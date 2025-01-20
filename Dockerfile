@@ -9,7 +9,7 @@ COPY ./src /geyser/src
 
 # Command to download the latest GeyserMC standalone jar
 RUN apt-get update && apt-get install -y curl && \
-    curl -s https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone && \
+    curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone -o geyser.jar && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Expose the port used by GeyserMC
