@@ -5,7 +5,7 @@ while true; do
   current_time=$(date +"%H:%M")
 
   # Check if it's 01:00
-  if [ "$current_time" = "01:00" ]; then
+  if [ "$current_time" = "20:00" ]; then
     echo "Time to restart the container"
     # Kill the Java process or exit the script to crash the container
     pkill java
