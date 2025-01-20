@@ -1,5 +1,5 @@
 # Use an OpenJDK image as base
-FROM openjdk:20-jdk-slim
+FROM openjdk:21-jdk-slim
 
 # Set working directory
 WORKDIR /geyser
