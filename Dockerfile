@@ -22,10 +22,10 @@ RUN curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/bu
 EXPOSE 19132
 
 # Copy a script that handles the scheduled shutdown
-COPY restart.sh /geyser/restart.sh
+COPY start.sh /geyser/start.sh
 
 # Make the script executable
-RUN chmod +x /geyser/restart.sh
+RUN chmod +x /geyser/start.sh
 
 # Start GeyserMC and the restart script
-CMD ["sh", "/geyser/restart.sh"]
+CMD ["sh", "/geyser/start.sh"]
