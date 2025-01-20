@@ -7,7 +7,7 @@
     current_time=$(date +"%H:%M")
 
     # Check if it's 20:00 (or any specified time)
-    if [ "$current_time" = "20:15" ]; then
+    if [ "$current_time" = "01:00" ]; then
       echo "Time to stop the container"
       # Exit the main shell to stop the container
       kill 1
