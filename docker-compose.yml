@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  geysermc:
+    build: .
+    container_name: geysermc
+    ports:
+      - "19132:19132/udp"
+    volumes:
+      - ./src:/geyser/src
+    restart: always  # Docker will restart the container if it exits
