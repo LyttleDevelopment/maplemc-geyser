@@ -4,13 +4,19 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /geyser
 
+# Set timezone to Europe/Brussels
+ENV TZ=Europe/Brussels
+
 # Copy the configuration files into the container
-COPY ./src /geyser/src
+COPY ./src /geyser
+
+# Install necessary packages and set timezone
+RUN apt-get update && apt-get install -y curl tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Command to download the latest GeyserMC standalone jar
-RUN apt-get update && apt-get install -y curl && \
-    curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone -o geyser.jar && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone -o geyser.jar
 
 # Expose the port used by GeyserMC
 EXPOSE 19132
@@ -22,4 +28,4 @@ COPY restart.sh /geyser/restart.sh
 RUN chmod +x /geyser/restart.sh
 
 # Start GeyserMC and the restart script
-CMD ["sh", "-c", "sh /geyser/restart.sh & java -jar geyser.jar"]
+CMD ["sh", "/geyser/restart.sh"]
