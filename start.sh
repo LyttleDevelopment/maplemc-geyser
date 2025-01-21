@@ -1,14 +1,14 @@
 #!/bin/sh
 
-## Check if the "key" environment variable is set
-#if [ -z "$key" ]; then
-#  echo "Error: The key environment variable is not set."
-#  exit 1
-#else
-#  # Create the key.pem file inside the container
-#  echo "$key" > /geyser/key.pem
-#  echo "key.pem file has been created."
-#fi
+# Check if the "KEY_BASE64" environment variable is set
+if [ -z "$KEY_BASE64" ]; then
+  echo "Error: The KEY_BASE64 environment variable is not set."
+  exit 1
+else
+  # Decode the Base64-encoded key and write to key.pem
+  echo "$KEY_BASE64" | base64 -d > /geyser/key.pem
+  echo "key.pem file has been created from Base64 encoded key."
+fi
 
 # Background task to monitor time and stop the container
 (
