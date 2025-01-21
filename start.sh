@@ -10,6 +10,15 @@ else
   echo "key.pem file has been created from Base64 encoded key."
 fi
 
+# Replace placeholder in config.yml with BACKEND_SERVER environment variable
+if [ -z "$BACKEND_SERVER" ]; then
+  echo "Error: The BACKEND_SERVER environment variable is not set."
+  exit 1
+else
+  sed -i "s/\${BACKEND_SERVER}/$BACKEND_SERVER/" /geyser/config.yml
+  echo "config.yml updated with BACKEND_SERVER: $BACKEND_SERVER"
+fi
+
 # Background task to monitor time and stop the container
 (
   while true; do
