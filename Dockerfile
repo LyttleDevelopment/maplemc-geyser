@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install -y curl tzdata && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Command to download the latest GeyserMC standalone jar
-RUN curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone -o geyser.jar
-
 # Expose the port used by GeyserMC
 EXPOSE 19132
 

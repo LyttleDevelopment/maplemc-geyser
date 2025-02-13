@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Always download the latest GeyserMC standalone jar at runtime
+echo "Downloading the latest GeyserMC standalone jar..."
+curl -sL https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/standalone -o geyser.jar
+echo "Download complete."
+
 # Check if the "KEY_BASE64" environment variable is set
 if [ -z "$KEY_BASE64" ]; then
   echo "Error: The KEY_BASE64 environment variable is not set."
